@@ -131,7 +131,9 @@ def calculate_EER_with_confusion(scores, trials):
     # EER with confusion Error
     pos = np.argmin(abs(fnr - fpr))
     EER_threshold = threshold[pos]
-    EER = fpr[pos]
+    EER_fpr = fpr[pos]
+    EER_fnr = fnr[pos]
+    EER = 0.5 * (EER_fpr + EER_fnr)
     EER1 = -1
     if pos < len(fpr) - 1:
         y11 = fpr[pos]
